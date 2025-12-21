@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Madelyn Lerew | Electrical Engineering Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Your Name</h1>
+        <p>Electrical Engineer | Specializing in [Your Sub-field]</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="projects">
+        <h2>Technical Projects</h2>
+        <div class="project-card">
+            <h3>Project Title (e.g., FPGA Digital Clock)</h3>
+            <p>Brief description of the problem and your solution.</p>
+            <p><strong>Tools:</strong> SystemVerilog, Vivado, Artix-7</p>
+        </div>
+    </section>
+</body>
+</html>
