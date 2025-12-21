@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lunar Lander Project | Your Name</title>
+    <link rel="stylesheet" href="../style.css"> </head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="../index.html">← Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1>Lunar Lander FPGA Implementation</h1>
+        <p><strong>Goal:</strong> Design a real-time landing simulator using SystemVerilog.</p>
+
+        <h3>System Architecture</h3>
+        <p>The system consists of an ALU for physics calculations and a Control Unit for game state logic.</p>
+        
+        <img src="../images/block-diagram.png" alt="ALU Block Diagram" style="max-width:100%;">
+
+        <h3>Core Code Snippet</h3>
+        <pre><code class="code-block">
+// Control Unit Logic Snippet
+always_ff @(posedge clk) begin
+    if (reset) state <= IDLE;
+    else state <= next_state;
+end
+        </code></pre>
+    </main>
+</body>
+</html>
