@@ -1,0 +1,78 @@
+:root {
+    --bg: #0f172a;
+    --card-bg: #1e293b;
+    --accent: #38bdf8;
+    --text: #f8fafc;
+    --text-dim: #94a3b8;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    padding: 4rem 0;
+    text-align: center;
+    background: linear-gradient(to bottom, #1e293b, #0f172a);
+}
+
+header h1 { margin: 0; color: var(--accent); font-size: 2.5rem; }
+
+nav {
+    background: #1e293b;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid #334155;
+    z-index: 100;
+}
+
+nav .container { display: flex; justify-content: center; gap: 20px; }
+nav a { color: var(--text); text-decoration: none; font-weight: bold; }
+nav a:hover { color: var(--accent); }
+
+section { padding: 3rem 0; border-bottom: 1px solid #1e293b; }
+
+.skills-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.tag {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--accent);
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid var(--accent);
+    font-size: 0.9rem;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+}
+
+.code-block {
+    display: block;
+    background: #000;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    color: #a5d6ff;
+}
