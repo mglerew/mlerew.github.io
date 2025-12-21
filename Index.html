@@ -2,31 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Madelyn Lerew | Electrical Engineering Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Electrical Engineering Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <header>
-        <h1>Your Name</h1>
-        <p>Electrical Engineer | Specializing in [Your Sub-field]</p>
+        <div class="container">
+            <h1>Your Name</h1>
+            <p>Electrical Engineer | Specializing in Digital Logic & Embedded Systems</p>
+        </div>
     </header>
 
     <nav>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="container">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
     </nav>
 
-    <section id="projects">
-        <h2>Technical Projects</h2>
-        <div class="project-card">
-            <h3>Project Title (e.g., FPGA Digital Clock)</h3>
-            <p>Brief description of the problem and your solution.</p>
-            <p><strong>Tools:</strong> SystemVerilog, Vivado, Artix-7</p>
+    <main class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Third-year Electrical Engineering student focused on circuit design, signal processing, and FPGA development. Passionate about solving complex hardware problems with clean, efficient code.</p>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Proficiencies</h2>
+            <div class="skills-list">
+                <span class="tag">SystemVerilog</span>
+                <span class="tag">Python (Pandas/NumPy)</span>
+                <span class="tag">PCB Design (Altium)</span>
+                <span class="tag">C++</span>
+                <span class="tag">MATLAB</span>
+                <span class="tag">Oscilloscope Diagnostics</span>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Lunar Lander (SystemVerilog)</h3>
+                    <p>Designed a functional Lunar Lander game on an FPGA. Implemented a custom ALU, memory modules, and VGA display controller.</p>
+                    <code class="code-block">module ll_control (input clk, input rst, ...);</code>
+                </div>
+                <div class="project-card">
+                    <h3>NYC Bicycle Data Analysis</h3>
+                    <p>Used Python to clean and analyze city-wide transit data. Built a linear regression model to predict daily ridership based on weather patterns.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <p>Connect with me: <a href="mailto:your.email@example.com">Email</a> | <a href="#">LinkedIn</a> | <a href="#">GitHub</a></p>
         </div>
-    </section>
+    </footer>
+
 </body>
 </html>
