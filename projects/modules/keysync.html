@@ -1,0 +1,25 @@
+<main class="container">
+    <h2>Keypress Synchronizer (keysync)</h2>
+    <p>This module debounces and synchronizes the raw pushbutton inputs to the system clock, preventing metastability.</p>
+
+    <h3>Design Highlights</h3>
+    <ul>
+        <li><strong>Encoding:</strong> Converts 20 pushbutton inputs into a 5-bit keycode for the FSM[cite: 21, 56].</li>
+        <li><strong>Strobe Generation:</strong> Produces a `keyclk` pulse only after the signal has passed through a two-flip-flop synchronizer[cite: 26, 61, 63].</li>
+        <li><strong>Metastability Protection:</strong> Uses a `debounce_ff2` stage to ensure stable transitions[cite: 27, 28, 62].</li>
+    </ul>
+
+    <h3>Synchronization Logic</h3>
+    <pre><code class="code-block">
+always_ff @(posedge clk or posedge rst) begin
+    if (rst) begin
+        debounce_ff1 <= 1'b0;
+        debounce_ff2 <= 1'b0;
+    end else begin
+        debounce_ff1 <= |keyin; // Check if any key is pressed
+        debounce_ff2 <= debounce_ff1;
+    end
+end
+assign keyclk = debounce_ff2;
+    </code></pre>
+</main>
