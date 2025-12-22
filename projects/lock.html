@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lunar Lander Project | Your Name</title>
-    <link rel="stylesheet" href="../style.css"> </head>
+    <title>Digital Lock Project | Madelyn Lerew</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
 <body>
     <nav>
         <div class="container">
@@ -12,22 +13,25 @@
     </nav>
 
     <main class="container">
-        <h1>Audio Equalizer</h1>
-        <p><strong>Goal:</strong> Design and build a circuit that acts as both an audio equalizer and amplifier.</p>
+        <h1>Digital Sequence Recognition Lock</h1>
+        <p><strong>Purdue ECE 270 | Digital Logic Design</strong></p>
 
-        <h3>Circuit Diagram</h3>
-        <p>The system consists of an ALU for physics calculations and a Control Unit for game state logic.</p>
-        
-        <img src="../images/audio_eq_schematic.png" alt="Circuit Schematic" style="max-width:100%;">
+        <section>
+            <h2>Project Overview</h2>
+            <p>Designed and implemented a modular digital lock system in SystemVerilog. The system accepts an 8-bit binary sequence from user pushbuttons and transitions through various states (INIT, LS0-LS7, OPEN, ALARM) to manage security[cite: 5, 31].</p>
+        </section>
 
-        <h3>Core Code Snippet</h3>
-        <pre><code class="code-block">
-// Control Unit Logic Snippet
-always_ff @(posedge clk) begin
-    if (reset) state <= IDLE;
-    else state <= next_state;
-end
-        </code></pre>
+        <section>
+            <h2>System Architecture</h2>
+            <p>The design is strictly modular, consisting of five core submodules integrated into a top-level module[cite: 6, 7]:</p>
+            <ul>
+                <li><strong><a href="modules/fsm.html">Finite State Machine (FSM)</a>:</strong> Manages lock states and transition logic[cite: 11, 31].</li>
+                <li><strong><a href="modules/sequence-sr.html">Sequence Shift Register</a>:</strong> Stores the 8-bit user-defined password[cite: 10, 27].</li>
+                <li><strong><a href="modules/display.html">Display Module</a>:</strong> Drives 7-segment displays for "SeCuRE", "OPEN", and "CALL 911" messages[cite: 12, 44].</li>
+                <li><strong><a href="modules/keysync.html">Keypress Synchronizer</a>:</strong> Debounces and synchronizes asynchronous button inputs[cite: 9, 86].</li>
+                <li><strong><a href="modules/clock-psc.html">Clock Prescaler</a>:</strong> Generates a 2 Hz signal for alarm flashing[cite: 8, 13].</li>
+            </ul>
+        </section>
     </main>
 </body>
 </html>
