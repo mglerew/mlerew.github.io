@@ -1,25 +1,62 @@
-<main class="container">
-    <h2>Keypress Synchronizer (keysync)</h2>
-    <p>This module debounces and synchronizes the raw pushbutton inputs to the system clock, preventing metastability.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../style.css"> </head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="../digital-lock.html">← Back to Project Overview</a>
+        </div>
+    </nav>
+    <main class="container">
+        <h2>Keypress Synchronizer (keysync)</h2>
+        <p>This module debounces and synchronizes the raw pushbutton inputs to the system clock, preventing metastability.</p>
+    
+        <h3>Design Highlights</h3>
+        <ul>
+            <li><strong>Encoding:</strong> Converts 20 pushbutton inputs into a 5-bit keycode for the FSM[cite: 21, 56].</li>
+            <li><strong>Strobe Generation:</strong> Produces a `keyclk` pulse only after the signal has passed through a two-flip-flop synchronizer[cite: 26, 61, 63].</li>
+            <li><strong>Metastability Protection:</strong> Uses a `debounce_ff2` stage to ensure stable transitions[cite: 27, 28, 62].</li>
+        </ul>
+    
+        <h3>Synchronization Logic</h3>
+        <pre><code class="code-block">
+module keysync(
+    input  logic clk,
+    input  logic rst,
+    input  logic [19:0] keyin,
+    output logic [4:0] keyout,
+    output logic keyclk
+);
+    assign keyout[0] = keyin[1] | keyin[3] | keyin[5] | keyin[7] | keyin[9]  |
+                       keyin[11] | keyin[13] | keyin[15] | keyin[17] | keyin[19];
+    assign keyout[1] = keyin[2] | keyin[3] | keyin[6] | keyin[7] | keyin[10] |
+                       keyin[11] | keyin[14] | keyin[15] | keyin[18] | keyin[19];
+    assign keyout[2] = keyin[4] | keyin[5] | keyin[6] | keyin[7] |
+                       keyin[12] | keyin[13] | keyin[14] | keyin[15];
+    assign keyout[3] = keyin[8] | keyin[9] | keyin[10] | keyin[11] |
+                       keyin[12] | keyin[13] | keyin[14] | keyin[15];
+    assign keyout[4] = keyin[16] | keyin[17] | keyin[18] | keyin[19];
 
-    <h3>Design Highlights</h3>
-    <ul>
-        <li><strong>Encoding:</strong> Converts 20 pushbutton inputs into a 5-bit keycode for the FSM[cite: 21, 56].</li>
-        <li><strong>Strobe Generation:</strong> Produces a `keyclk` pulse only after the signal has passed through a two-flip-flop synchronizer[cite: 26, 61, 63].</li>
-        <li><strong>Metastability Protection:</strong> Uses a `debounce_ff2` stage to ensure stable transitions[cite: 27, 28, 62].</li>
-    </ul>
+    logic debounce_ff1, debounce_ff2;
+    logic any_key_pressed;
 
-    <h3>Synchronization Logic</h3>
-    <pre><code class="code-block">
-always_ff @(posedge clk or posedge rst) begin
-    if (rst) begin
-        debounce_ff1 <= 1'b0;
-        debounce_ff2 <= 1'b0;
-    end else begin
-        debounce_ff1 <= |keyin; // Check if any key is pressed
-        debounce_ff2 <= debounce_ff1;
+    assign any_key_pressed = |keyin;
+
+    always_ff @(posedge clk or posedge rst) begin
+        if (rst) begin
+            debounce_ff1 <= 1'b0;
+            debounce_ff2 <= 1'b0;
+        end else begin
+            debounce_ff1 <= any_key_pressed;
+            debounce_ff2 <= debounce_ff1;
+        end
     end
-end
-assign keyclk = debounce_ff2;
-    </code></pre>
-</main>
+
+    assign keyclk = debounce_ff2;
+endmodule
+        </code></pre>
+    </main>
+</body>
+</html>
