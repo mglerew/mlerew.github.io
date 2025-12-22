@@ -14,22 +14,20 @@
 
     <main class="container">
         <h1>Digital Sequence Recognition Lock</h1>
-        <p><strong>Purdue ECE 270 | Digital Logic Design</strong></p>
-
         <section>
             <h2>Project Overview</h2>
-            <p>Designed and implemented a modular digital lock system in SystemVerilog. The system accepts an 8-bit binary sequence from user pushbuttons and transitions through various states (INIT, LS0-LS7, OPEN, ALARM) to manage security[cite: 5, 31].</p>
+            <p>Designed and implemented a modular digital lock system in SystemVerilog. The system accepts an 8-bit binary sequence from user pushbuttons and transitions through various states (INIT, LS0-LS7, OPEN, ALARM) to manage security.</p>
         </section>
 
         <section>
             <h2>System Architecture</h2>
             <p>The design is strictly modular, consisting of five core submodules integrated into a top-level module[cite: 6, 7]:</p>
             <ul>
-                <li><strong><a href="modules/fsm.html">Finite State Machine (FSM)</a>:</strong> Manages lock states and transition logic[cite: 11, 31].</li>
-                <li><strong><a href="modules/sequence-sr.html">Sequence Shift Register</a>:</strong> Stores the 8-bit user-defined password[cite: 10, 27].</li>
-                <li><strong><a href="modules/display.html">Display Module</a>:</strong> Drives 7-segment displays for "SeCuRE", "OPEN", and "CALL 911" messages[cite: 12, 44].</li>
-                <li><strong><a href="modules/keysync.html">Keypress Synchronizer</a>:</strong> Debounces and synchronizes asynchronous button inputs[cite: 9, 86].</li>
-                <li><strong><a href="modules/clock-psc.html">Clock Prescaler</a>:</strong> Generates a 2 Hz signal for alarm flashing[cite: 8, 13].</li>
+                <li><strong><a href="modules/fsm.html">Finite State Machine (FSM)</a>:</strong> Manages lock states and transition logic.</li>
+                <li><strong><a href="modules/sequence-sr.html">Sequence Shift Register</a>:</strong> Stores the 8-bit user-defined password.</li>
+                <li><strong><a href="modules/display.html">Display Module</a>:</strong> Drives 7-segment displays for "SeCuRE", "OPEN", and "CALL 911" messages.</li>
+                <li><strong><a href="modules/keysync.html">Keypress Synchronizer</a>:</strong> Debounces and synchronizes asynchronous button inputs.</li>
+                <li><strong><a href="modules/clock-psc.html">Clock Prescaler</a>:</strong> Generates a 2 Hz signal for alarm flashing.</li>
             </ul>
         </section>
     </main>
