@@ -1,21 +1,43 @@
-<main class="container">
-    <h2>Sequence Shift Register (sequence_sr)</h2>
-    <p>The shift register stores the 8-bit password sequence entered by the user via pushbuttons[cite: 65, 92].</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../style.css"> </head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="../lock.html">← Back to Project Overview</a>
+        </div>
+    </nav>
 
-    <h3>Functionality</h3>
-    <ul>
-        <li><strong>Serial Input:</strong> Accepts a 1-bit input representing the button pressed (0 or 1).</li>
-        <li><strong>Enable Control:</strong> Only updates the internal sequence when the enable (en) signal is high, preventing accidental changes after the lock is set[cite: 47, 66, 94].</li>
-        <li><strong>Parallel Output:</strong> Provides the full 8-bit sequence to the FSM for continuous comparison.</li>
-    </ul>
-
-    <h3>Implementation Code</h3>
-    <pre><code class="code-block">
-always_ff @(posedge clk or posedge rst) begin
-    if (rst)
-        seq <= 8'b0;
-    else if (en)
-        seq <= {seq[6:0], button}; // Serial shift logic
-end
-    </code></pre>
-</main>
+    <main class="container">
+        <h2>Sequence Shift Register (sequence_sr)</h2>
+        <p>The shift register stores the 8-bit password sequence entered by the user via pushbuttons[cite: 65, 92].</p>
+    
+        <h3>Functionality</h3>
+        <ul>
+            <li><strong>Serial Input:</strong> Accepts a 1-bit input representing the button pressed (0 or 1).</li>
+            <li><strong>Enable Control:</strong> Only updates the internal sequence when the enable (en) signal is high, preventing accidental changes after the lock is set[cite: 47, 66, 94].</li>
+            <li><strong>Parallel Output:</strong> Provides the full 8-bit sequence to the FSM for continuous comparison.</li>
+        </ul>
+    
+        <h3>Implementation Code</h3>
+        <pre><code class="code-block">
+    module sequence_sr(
+        input  logic clk,
+        input  logic rst,
+        input  logic en,
+        input  logic button,
+        output logic [7:0] seq
+    );
+        always_ff @(posedge clk or posedge rst) begin
+            if (rst)
+                seq <= 8'b0;
+            else if (en)
+                seq <= {seq[6:0], button};
+        end
+    endmodule
+        </code></pre>
+    </main>
+</body>
+</html>
