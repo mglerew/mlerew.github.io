@@ -116,11 +116,30 @@ section { padding: 3rem 0; border-bottom: 1px solid #1e293b; }
     border-radius: 0 4px 4px 0;
 }
 
+/* Clean Vertical Bullet Points */
 .course-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 8px;
-    list-style-type: "→ ";
-    padding-left: 20px;
-    color: var(--text-dim);
+    display: block !important;       /* Forces vertical stacking */
+    list-style-type: disc !important; /* Standard solid circle bullet */
+    padding-left: 40px !important;    /* Moves list in so bullets are visible */
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
+
+.course-list li {
+    display: list-item !important;    /* Re-enables bullet point behavior */
+    margin-bottom: 12px;              /* Adds breathing room between courses */
+    color: var(--text-dim);
+    font-size: 1.05rem;
+}
+
+.course-list a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.course-list a:hover {
+    text-decoration: underline;
+    color: #fff; /* Highlights white on hover for better readability */
+}
+
