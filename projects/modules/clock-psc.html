@@ -23,17 +23,33 @@
     
         <h3>SystemVerilog Snippet</h3>
         <pre><code class="code-block">
+module clock_psc(
+    input  logic clk,
+    input  logic rst,
+    input  logic [7:0] lim,
+    output logic hzX
+);
+    logic [7:0] tick_count;
+    logic toggled_clk;
+
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
             tick_count  <= 8'd0;
             toggled_clk <= 1'b0;
-        end else if (lim != 8'd0) begin
-            if (tick_count == lim) begin
-                tick_count  <= 8'd0;
-                toggled_clk <= ~toggled_clk;
-            end else tick_count <= tick_count + 8'd1;
+        end else begin
+            if (lim != 8'd0) begin
+                if (tick_count == lim) begin
+                    tick_count  <= 8'd0;
+                    toggled_clk <= ~toggled_clk;
+                end else begin
+                    tick_count <= tick_count + 8'd1;
+                end
+            end
         end
     end
+
+    assign hzX = (lim == 8'd0) ? clk : toggled_clk;
+endmodule
         </code></pre>
     </main>
 </body>
