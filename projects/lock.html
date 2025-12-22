@@ -30,6 +30,96 @@
                 <li><strong><a href="modules/clock-psc.html">Clock Prescaler</a>:</strong> Generates a 2 Hz signal for alarm flashing.</li>
             </ul>
         </section>
+        <h2>Top Level Module</h2>
+        <pre><code class="code-block">
+`default_nettype none
+
+// Global state type definition
+typedef enum logic [3:0] {
+    LS0   = 0,
+    LS1   = 1,
+    LS2   = 2,
+    LS3   = 3,
+    LS4   = 4,
+    LS5   = 5,
+    LS6   = 6,
+    LS7   = 7,
+    INIT  = 8,
+    OPEN  = 9,
+    ALARM = 10
+} state_t;
+
+module top (
+    // I/O ports
+    input  logic hz100, reset,
+    input  logic [20:0] pb,
+    output logic [7:0] left, right,
+           ss7, ss6, ss5, ss4, ss3, ss2, ss1, ss0,
+    output logic red, green, blue,
+
+    // UART ports
+    output logic [7:0] txdata,
+    input  logic [7:0] rxdata,
+    output logic txclk, rxclk,
+    input  logic txready, rxready
+);
+
+    // Internal signals
+    logic [4:0] decoded_key;
+    logic key_pulse;
+    logic [7:0] sequence_data;
+    logic [3:0] current_state;
+    logic clk_divided;
+
+    // Clock prescaler instance
+    clock_psc clk_divider_inst(
+        .clk (hz100),
+        .rst (pb[16]),
+        .lim (8'd49),
+        .hzX (clk_divided)
+    );
+
+    // Key synchronization and decoding
+    keysync key_sync_inst(
+        .clk    (hz100),
+        .rst    (reset),
+        .keyin  (pb[19:0]),
+        .keyout (decoded_key),
+        .keyclk (key_pulse)
+    );
+
+    // Shift register for password sequence
+    sequence_sr seq_shift_inst(
+        .clk (key_pulse),
+        .rst (reset),
+        .en  (~|decoded_key[4:1] & current_state == INIT),
+        .button (decoded_key[0]),
+        .seq (sequence_data)
+    );
+
+    // Finite State Machine (Lock Logic)
+    fsm lock_fsm_inst(
+        .clk (key_pulse),
+        .rst (reset),
+        .keyout (decoded_key),
+        .seq (sequence_data),
+        .state (current_state)
+    );
+
+    // Display Controller
+    display display_inst(
+        .hzX (clk_divided),
+        .state (current_state),
+        .ss ({ss7, ss6, ss5, ss4, ss3, ss2, ss1, ss0}),
+        .red (red),
+        .green (green),
+        .blue (blue)
+    );
+
+    assign right = sequence_data;
+
+endmodule
+        </code></pre>
     </main>
 </body>
 </html>
