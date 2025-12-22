@@ -1,0 +1,18 @@
+<main class="container">
+    <h2>Display Module</h2>
+    <p>The display module implements the output logic for the system, visually communicating the lock's state to the user.</p>
+
+    <h3>Visual States</h3>
+    <ul>
+        <li><strong>SeCuRE:</strong> Displays the message and uses the decimal point to indicate the current progress in the sequence[cite: 40, 90].</li>
+        <li><strong>OPEN:</strong> Displays "OPEN" and illuminates the green LED[cite: 37, 38, 87, 88].</li>
+        <li><strong>ALARM:</strong> Displays "CALL 911" and flashes the red LED at a 2 Hz frequency using the prescaled clock[cite: 31, 39, 81, 89].</li>
+    </ul>
+
+    <h3>Dynamic Decimal Point Calculation</h3>
+    <pre><code class="code-block">
+// Shifts a 1 to the correct segment based on the 4-bit current state
+bit_pos = ((6'd7 - 6'(state)) << 3) + 6'd7;
+display_data = MSG_SECURE | (64'h1 << bit_pos);
+    </code></pre>
+</main>
