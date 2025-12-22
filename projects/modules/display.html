@@ -23,9 +23,75 @@
     
         <h3>Dynamic Decimal Point Calculation</h3>
         <pre><code class="code-block">
-    // Shifts a 1 to the correct segment based on the 4-bit current state
-    bit_pos = ((6'd7 - 6'(state)) << 3) + 6'd7;
-    display_data = MSG_SECURE | (64'h1 << bit_pos);
+typedef enum logic [3:0] {
+    LS0   = 0,
+    LS1   = 1,
+    LS2   = 2,
+    LS3   = 3,
+    LS4   = 4,
+    LS5   = 5,
+    LS6   = 6,
+    LS7   = 7,
+    INIT  = 8,
+    OPEN  = 9,
+    ALARM = 10
+} state_t;
+
+module display(
+    input  logic hzX,
+    input  logic [3:0] state,
+    output logic [63:0] ss,
+    output logic red,
+    output logic green,
+    output logic blue
+);
+    localparam [63:0] MSG_SECURE  = 64'b01101101_01111001_00111001_00111110_01010000_01111001;
+    localparam [63:0] MSG_OPEN    = 64'b00111111_01110011_01111001_01010100;
+    localparam [63:0] MSG_CALL911 = 64'b00111001_01110111_00111000_00111000_00000000_01100111_00000110_00000110;
+
+    state_t disp_state;
+    assign disp_state = state_t'(state);
+
+    logic [63:0] display_data;
+    logic led_red, led_green, led_blue;
+    logic [5:0] bit_pos;
+
+    assign ss    = display_data;
+    assign red   = led_red;
+    assign green = led_green;
+    assign blue  = led_blue;
+
+    always_comb begin
+        display_data = 64'h0;
+        led_red   = 1'b0;
+        led_green = 1'b0;
+        led_blue  = 1'b0;
+        bit_pos   = 6'h0;
+
+        case (disp_state)
+            INIT: ;
+
+            OPEN: begin
+                display_data = MSG_OPEN;
+                led_green = 1'b1;
+            end
+
+            ALARM: begin
+                display_data = MSG_CALL911;
+                led_red = ~hzX;
+            end
+
+            LS0, LS1, LS2, LS3, LS4, LS5, LS6, LS7: begin
+                led_blue = 1'b1;
+                display_data = MSG_SECURE;
+                bit_pos = ((6'd7 - 6'(state)) << 3) + 6'd7;
+                display_data = MSG_SECURE | (64'h1 << bit_pos);
+            end
+                                                        
+            default: ;
+        endcase
+    end
+endmodule
         </code></pre>
     </main>
 </body>
