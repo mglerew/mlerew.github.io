@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FSM Module | Digital Lock</title>
+    <link rel="stylesheet" href="../../style.css"> </head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="../digital-lock.html">← Back to Project Overview</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h2>Finite State Machine (FSM) Implementation</h2>
+        <p>The FSM serves as the "brain" of the lock, utilizing a 4-bit Moore model state machine to track security progress[cite: 31, 34].</p>
+
+        <h3>Core SystemVerilog Logic</h3>
+        <pre><code class="code-block">
+// State definitions used across the system [cite: 5]
+typedef enum logic [3:0] {
+    LS0 = 0, LS1 = 1, LS2 = 2, LS3 = 3, LS4 = 4, LS5 = 5, LS6 = 6, LS7 = 7,
+    INIT = 8, OPEN = 9, ALARM = 10
+} state_t;
+
+// Next State Logic Block [cite: 36]
+always_comb begin
+    casez ({curr_state, match_bit, reset_cmd})
+        {LS0, 1'b1, 1'b0}: next_state = LS1;
+        {LS7, 1'b1, 1'b0}: next_state = OPEN;
+        {LS7, 1'b0, 1'b0}: next_state = ALARM;
+        default: next_state = curr_state;
+    endcase
+end
+        </code></pre>
+    </main>
+</body>
+</html>
