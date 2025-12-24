@@ -143,3 +143,13 @@ section { padding: 3rem 0; border-bottom: 1px solid #1e293b; }
     color: #fff; /* Highlights white on hover for better readability */
 }
 
+.centered-schematic {
+    display: block;       /* Changes image to a block-level element */
+    margin-left: auto;    /* Pushes from the left */
+    margin-right: auto;   /* Pushes from the right */
+    max-width: 150%;      /* Changed from 150% to prevent container overflow */
+    height: auto;         /* Maintains aspect ratio */
+    border: 1px solid var(--accent); /* Optional: adds a thin blue border */
+    padding: 10px;
+}
+
