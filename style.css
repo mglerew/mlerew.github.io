@@ -100,7 +100,7 @@ a:hover, nav a:hover {
     border-radius: 6px;
     font-family: 'Fira Code', monospace;
     font-size: 0.85rem;
-    color: #1e293b; /* Dark text for code */
+    color: #a5d6ff; /* Dark text for code */
     border-left: 4px solid var(--accent);
 }
 
