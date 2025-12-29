@@ -46,6 +46,23 @@ nav a:hover { color: var(--accent); }
 section { padding: 3rem 0; border-bottom: 1px solid #1e293b; }
 
 .skills-list { display: flex; flex-wrap: wrap; gap: 10px; }
+
+a, a:visited {
+    color: var(--accent) !important; /* Forces use of your bright cyan blue  */
+    text-decoration: none;           /* Removes default underline  */
+}
+
+/* 2. This ensures your navigation links also stay white/blue instead of purple */
+nav a, nav a:visited {
+    color: var(--text) !important;   /* Keeps nav links near-white  */
+}
+
+/* 3. Hover state: links will turn white when you mouse over them */
+a:hover, nav a:hover {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+
 .tag {
     background: rgba(56, 189, 248, 0.1);
     color: var(--accent);
