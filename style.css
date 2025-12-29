@@ -180,3 +180,39 @@ a:hover, nav a:hover {
     padding: 10px;
 }
 
+.about-flex {
+    display: flex;
+    align-items: center; /* Vertically centers the text with the image */
+    gap: 40px;           /* Adds space between text and image */
+    padding: 2rem 0;
+}
+
+.about-text {
+    flex: 2; /* Gives the text more space (2/3 of the width) */
+}
+
+.about-image {
+    flex: 1; /* Gives the image 1/3 of the width */
+    text-align: center;
+}
+
+.headshot {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px; /* Rounds the corners of your photo */
+    border: 2px solid var(--accent); /* Adds your blue brand color as a border */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Adds depth */
+}
+
+/* Responsive Design: Stacks on mobile */
+@media (max-width: 768px) {
+    .about-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .about-image {
+        order: -1; /* Puts the image on top for mobile users */
+    }
+}
+
