@@ -1,9 +1,11 @@
 :root {
-    --bg: #0f172a;
-    --card-bg: #1e293b;
-    --accent: #38bdf8;
-    --text: #f8fafc;
-    --text-dim: #94a3b8;
+    --bg: #ffffff;             /* Pure white background */
+    --card-bg: #f8fafc;        /* Very light gray for project cards */
+    --accent: #0284c7;         /* Professional Blue (optimized for light mode) */
+    --text: #0f172a;           /* Dark navy for high-readability text */
+    --text-dim: #475569;       /* Medium gray for descriptions */
+    --border: #e2e8f0;         /* Subtle border color */
+    --code-bg: #f1f5f9;        /* Light gray for code snippets */
 }
 
 body {
