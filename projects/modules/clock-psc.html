@@ -12,13 +12,13 @@
 
     <main class="container">
         <h2>Clock Prescaler (clock_psc)</h2>
-        <p>This module generates a slower, prescaled clock from a high-speed input (100 Hz), specifically used to drive the 2 Hz alarm flash[cite: 45, 95].</p>
+        <p>This module generates a slower, prescaled clock from a high-speed input (100 Hz), specifically used to drive the 2 Hz alarm flash.</p>
     
         <h3>Technical Implementation</h3>
         <ul>
-            <li><strong>Counter Logic:</strong> Implements an 8-bit counter that increments until it reaches a defined limit (lim)[cite: 51, 53].</li>
-            <li><strong>Toggling Mechanism:</strong> When the count reaches the limit, the output signal toggles, effectively dividing the frequency[cite: 53, 98].</li>
-            <li><strong>Passthrough Mode:</strong> If the limit is set to 0, the module passes the original clock through without division[cite: 54, 100].</li>
+            <li><strong>Counter Logic:</strong> Implements an 8-bit counter that increments until it reaches a defined limit.</li>
+            <li><strong>Toggling Mechanism:</strong> When the count reaches the limit, the output signal toggles, effectively dividing the frequency.</li>
+            <li><strong>Passthrough Mode:</strong> If the limit is set to 0, the module passes the original clock through without division.</li>
         </ul>
     
         <h3>SystemVerilog Snippet</h3>
