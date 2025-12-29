@@ -1,11 +1,11 @@
 :root {
-    --bg: #ffffff;             /* Pure white background */
-    --card-bg: #f8fafc;        /* Very light gray for project cards */
-    --accent: #0284c7;         /* Professional Blue (optimized for light mode) */
-    --text: #0f172a;           /* Dark navy for high-readability text */
-    --text-dim: #475569;       /* Medium gray for descriptions */
-    --border: #e2e8f0;         /* Subtle border color */
-    --code-bg: #f1f5f9;        /* Light gray for code snippets */
+    --bg: #1e293b;             /* Lighter solid navy (Slate 800) */
+    --card-bg: #334155;        /* Slightly lighter for project cards (Slate 700) */
+    --accent: #38bdf8;         /* Bright cyan blue for visibility */
+    --text: #f8fafc;           /* Near-white for primary text */
+    --text-dim: #cbd5e1;       /* Light gray for secondary text */
+    --border: #475569;         /* Subtle border for cards and sections */
+    --code-bg: #000000;        /* Keep code blocks dark for that terminal feel */
 }
 
 body {
